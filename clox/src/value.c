@@ -1,6 +1,6 @@
 #include "value.h"
-#include "memory.h"
 #include <stdio.h>
+#include "memory.h"
 
 void printValue(Value value) {
     printf("%g", value);

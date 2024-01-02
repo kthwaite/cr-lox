@@ -22,7 +22,7 @@ typedef enum {
 // Initialize the VM.
 void initVM();
 // Interpret a chunk using the VM.
-InterpretResult interpret(Chunk* chunk);
+InterpretResult interpret(const char* source);
 // Push a value onto the stack.
 void push(Value value);
 // Pop a value off the stack.
