@@ -6,14 +6,17 @@
 
 // A single instruction.
 typedef enum {
-    OP_RETURN,
     OP_CONSTANT,
+    // TODO: OP_CONSTANT_LONG
+    OP_NEGATE,
+    OP_RETURN,
 } OpCode;
 
 typedef struct {
     int count;
     int capacity;
     uint8_t* code;
+    // TODO: could be uint8_t RLE with an `int max_lineno`
     int* lines;
     ValueArray constants;
 } Chunk;
@@ -26,6 +29,5 @@ void freeChunk(Chunk* chunk);
 void writeChunk(Chunk* chunk, uint8_t byte, int line);
 // Add a constant to the constants array, returning the index.
 int addConstant(Chunk* chunk, Value value);
-
 
 #endif

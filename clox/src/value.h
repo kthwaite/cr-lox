@@ -22,5 +22,4 @@ void writeValueArray(ValueArray* array, Value value);
 // Free a value array.
 void freeValueArray(ValueArray* array);
 
-
 #endif
