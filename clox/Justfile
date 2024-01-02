@@ -1,0 +1,2 @@
+build:
+    cc src/*.c -o main
