@@ -21,6 +21,11 @@ void disassembleChunk(Chunk* chunk, const char* name) {
 int disassembleInstruction(Chunk* chunk, int offset){ 
     printf("%04d ", offset);
     uint8_t instruction = chunk->code[offset];
+    if(offset > 0 && chunk->lines[offset] == chunk->lines[offset - 1]) {
+        printf(" | ");
+    }else {
+        printf("%4d ", chunk->lines[offset]);
+    }
     switch (instruction) {
         case OP_RETURN:
             return simpleInstruction("OP_RETURN", offset);

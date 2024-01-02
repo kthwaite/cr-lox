@@ -14,6 +14,7 @@ typedef struct {
     int count;
     int capacity;
     uint8_t* code;
+    int* lines;
     ValueArray constants;
 } Chunk;
 
@@ -22,7 +23,7 @@ void initChunk(Chunk* chunk);
 // Free a chunk.
 void freeChunk(Chunk* chunk);
 // Write a byte into a chunk, reallocating if necessary.
-void writeChunk(Chunk* chunk, uint8_t byte);
+void writeChunk(Chunk* chunk, uint8_t byte, int line);
 // Add a constant to the constants array, returning the index.
 int addConstant(Chunk* chunk, Value value);
 
