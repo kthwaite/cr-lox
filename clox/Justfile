@@ -3,3 +3,10 @@ run: build
 
 build:
     cc src/*.c -o main
+
+fmt:
+    clang-format -i ./src/*
+
+test:
+    cc test/*.c -o test_main
+    ./test_main
