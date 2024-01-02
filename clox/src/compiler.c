@@ -5,8 +5,11 @@
 #include "chunk.h"
 #include "common.h"
 #include "compiler.h"
-#include "debug.h"
 #include "scanner.h"
+
+#ifdef DEBUG_PRINT_CODE
+#include "debug.h"
+#endif
 
 typedef struct {
     Token current;
@@ -112,6 +115,11 @@ static void emitReturn() {
 //
 static void endCompiler() {
     emitReturn();
+#ifdef DEBUG_PRINT_CODE
+    if (!parser.hadError) {
+        disassembleChunk(currentChunk(), "code");
+    }
+#endif
 }
 
 //
@@ -167,6 +175,7 @@ static void unary() {
     }
 }
 
+//
 static void parsePrecedence(Precedence prec) {
     advance();
     ParseFn prefix_rule = getRule(parser.previous.type)->prefix;
