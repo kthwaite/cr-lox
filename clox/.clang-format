@@ -5,3 +5,9 @@ AllowShortFunctionsOnASingleLine: false
 ColumnLimit: 90
 IndentCaseLabels: true
 AllowShortCaseLabelsOnASingleLine: true
+IncludeCategories:
+  - Regex:           '<[[:alnum:].]+>'
+    Priority:        1
+  - Regex:           '.*'
+    Priority:        2
+    SortPriority:    0
