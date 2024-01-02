@@ -2,16 +2,19 @@
 #define CLOX_CHUNK_H
 
 #include "common.h"
+#include "value.h"
 
 // A single instruction.
 typedef enum {
     OP_RETURN,
+    OP_CONSTANT,
 } OpCode;
 
 typedef struct {
     int count;
     int capacity;
     uint8_t* code;
+    ValueArray constants;
 } Chunk;
 
 // Initialize a chunk.
@@ -20,6 +23,8 @@ void initChunk(Chunk* chunk);
 void freeChunk(Chunk* chunk);
 // Write a byte into a chunk, reallocating if necessary.
 void writeChunk(Chunk* chunk, uint8_t byte);
+// Add a constant to the constants array, returning the index.
+int addConstant(Chunk* chunk, Value value);
 
 
 #endif
