@@ -16,9 +16,10 @@ struct Obj {
 };
 
 struct ObjString {
-    Obj   obj;
-    int   length;
-    char* chars;
+    Obj      obj;
+    int      length;
+    char*    chars;
+    uint32_t hash;
 };
 
 // Construct an ObjString, taking ownership of the passed C string.

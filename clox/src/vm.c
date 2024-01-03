@@ -62,6 +62,7 @@ static void concatenate() {
 void initVM() {
     resetStack();
     vm.objects = NULL;
+    initTable(&vm.strings);
 }
 
 static InterpretResult run() {
@@ -171,4 +172,6 @@ InterpretResult interpret(const char* source) {
 }
 
 void freeVM() {
+    freeTable(&vm.strings);
+    freeObjects();
 }
