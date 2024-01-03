@@ -12,3 +12,6 @@ IncludeCategories:
     Priority:        2
     SortPriority:    0
 InsertBraces: true
+AlignArrayOfStructures: Left
+AlignConsecutiveAssignments: Consecutive
+AlignConsecutiveDeclarations: Consecutive
