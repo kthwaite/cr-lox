@@ -13,9 +13,9 @@ typedef struct {
 Scanner scanner;
 
 void initScanner(const char* source) {
-    scanner.start = source;
+    scanner.start   = source;
     scanner.current = source;
-    scanner.line = 1;
+    scanner.line    = 1;
 }
 
 // Returns true if the scanner has reached the end of the source code.
@@ -26,20 +26,20 @@ static bool isAtEnd() {
 // Create a token of type `type` from the current scanner state.
 static Token makeToken(TokenType type) {
     Token token;
-    token.type = type;
-    token.start = scanner.start;
+    token.type   = type;
+    token.start  = scanner.start;
     token.length = (int)(scanner.current - scanner.start);
-    token.line = scanner.line;
+    token.line   = scanner.line;
     return token;
 }
 
 // Create an error token with the given `msg`.
 static Token errorToken(const char* msg) {
     Token token;
-    token.type = TOKEN_ERROR;
-    token.start = msg;
+    token.type   = TOKEN_ERROR;
+    token.start  = msg;
     token.length = (int)strlen(msg);
-    token.line = scanner.line;
+    token.line   = scanner.line;
     return token;
 }
 
@@ -184,6 +184,7 @@ static TokenType identifierType() {
         case 'v': return checkKeyword(1, 2, "ar", TOKEN_VAR);
         case 'w': return checkKeyword(1, 4, "while", TOKEN_WHILE);
     }
+    return TOKEN_IDENTIFIER;
 }
 
 // Construct an identifier token from the current scanner state.
@@ -223,8 +224,8 @@ Token scanToken() {
         case '*': return makeToken(TOKEN_STAR);
         case '!': return makeToken(match('=') ? TOKEN_BANG_EQUAL : TOKEN_BANG);
         case '=': return makeToken(match('=') ? TOKEN_EQUAL_EQUAL : TOKEN_EQUAL);
-        case '<': return makeToken(match('=') ? TOKEN_LESS_EQUAL : TOKEN_EQUAL);
-        case '>': return makeToken(match('=') ? TOKEN_GREATER_EQUAL : TOKEN_EQUAL);
+        case '<': return makeToken(match('=') ? TOKEN_LESS_EQUAL : TOKEN_LESS);
+        case '>': return makeToken(match('=') ? TOKEN_GREATER_EQUAL : TOKEN_GREATER);
         case '"': return string();
     }
     return errorToken("Unexpected character!");
