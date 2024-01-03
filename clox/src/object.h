@@ -11,12 +11,13 @@ typedef enum {
 
 // Lox object.
 struct Obj {
-    ObjType type;
+    ObjType     type;
+    struct Obj* next;
 };
 
 struct ObjString {
-    Obj obj;
-    int length;
+    Obj   obj;
+    int   length;
     char* chars;
 };
 

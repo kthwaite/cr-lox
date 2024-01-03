@@ -28,11 +28,11 @@ typedef enum {
 } OpCode;
 
 typedef struct {
-    int count;
-    int capacity;
+    int      count;
+    int      capacity;
     uint8_t* code;
     // TODO: could be uint8_t RLE with an `int max_lineno`
-    int* lines;
+    int*       lines;
     ValueArray constants;
 } Chunk;
 

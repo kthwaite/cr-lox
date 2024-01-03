@@ -22,7 +22,7 @@ static void runtimeError(const char* format, ...) {
     va_end(args);
     fputs("\n", stderr);
     size_t instruction = vm.ip - vm.chunk->code - 1;
-    int line           = vm.chunk->lines[instruction];
+    int    line        = vm.chunk->lines[instruction];
     fprintf(stderr, "[line %d] in script \n", line);
     resetStack();
 }
@@ -46,10 +46,10 @@ static bool isFalsey(Value value) {
 }
 
 static void concatenate() {
-    ObjString* b = AS_STRING(pop());
-    ObjString* a = AS_STRING(pop());
-    int length   = a->length + b->length;
-    char* chars  = ALLOCATE(char, length + 1);
+    ObjString* b      = AS_STRING(pop());
+    ObjString* a      = AS_STRING(pop());
+    int        length = a->length + b->length;
+    char*      chars  = ALLOCATE(char, length + 1);
     memcpy(chars, a->chars, a->length);
     memcpy(chars + a->length, b->chars, b->length);
 
@@ -61,6 +61,7 @@ static void concatenate() {
 
 void initVM() {
     resetStack();
+    vm.objects = NULL;
 }
 
 static InterpretResult run() {
@@ -122,12 +123,18 @@ static InterpretResult run() {
             case OP_LESS: BINARY_OP(BOOL_VAL, <); break;
 
             case OP_ADD: {
+                printf("Value is: ");
+                printValue(peek(0));
+                printValue(peek(1));
+                printf("\n");
                 if (IS_STRING(peek(0)) && IS_STRING(peek(1))) {
                     concatenate();
+                    break;
                 } else if (IS_NUMBER(peek(0)) && IS_NUMBER(peek(1))) {
                     double b = AS_NUMBER(pop());
                     double a = AS_NUMBER(pop());
                     push(NUMBER_VAL(a + b));
+                    break;
                 } else {
                     runtimeError("Operands must be two numbers or two strings");
                     return INTERPRET_RUNTIME_ERROR;
