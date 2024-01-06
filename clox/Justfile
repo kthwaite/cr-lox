@@ -1,12 +1,28 @@
+# list recipes
+default:
+    just --list
+
+# build 
+build:
+    cc src/*.c -o main -O2
+
+# build and run
 run: build
     ./main
 
-build:
-    cc src/*.c -o main
+# debug build
+build-debug:
+    cc src/*.c -o main -g -O0
 
+# run debug build with lldb
+debug: build-debug
+    lldb ./main
+
+# run clang-format
 fmt:
     clang-format -i ./src/*
 
+# run tests
 test:
     cc test/*.c -o test_main
     ./test_main
