@@ -1,0 +1,11 @@
+AlignConsecutiveShortCaseStatements:
+  Enabled: true
+  AcrossEmptyLines: false
+  AcrossComments: true
+  AlignCaseColons: false
+PointerAlignment: Left
+AllowShortCaseLabelsOnASingleLine: false
+IndentCaseBlocks: true
+IndentCaseLabels: true
+BasedOnStyle: LLVM
+IndentWidth: 4
