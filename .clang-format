@@ -4,7 +4,7 @@ AlignConsecutiveShortCaseStatements:
   AcrossComments: true
   AlignCaseColons: false
 PointerAlignment: Left
-AllowShortCaseLabelsOnASingleLine: false
+AllowShortCaseLabelsOnASingleLine: true
 IndentCaseBlocks: true
 IndentCaseLabels: true
 BasedOnStyle: LLVM
