@@ -34,14 +34,14 @@ static char* readFile(const char* path) {
         fprintf(stderr, "Not enough memory to read \"%s\"", path);
         exit(74);
     }
-    size_t bytesRead = fread(buffer, sizeof(char), fileSize, file);
+    size_t bytesRead  = fread(buffer, sizeof(char), fileSize, file);
     buffer[bytesRead] = '\0';
     fclose(file);
     return buffer;
 }
 
 static void runFile(const char* path) {
-    char* source = readFile(path);
+    char* source           = readFile(path);
     InterpretResult result = interpret(source);
     free(source);
     if (result == INTERPRET_COMPILE_ERROR) {
