@@ -10,11 +10,19 @@ typedef enum {
     OP_CONSTANT,
     // Unary negation.
     OP_NEGATE,
+    OP_NOT,
     // Binary operators.
     OP_ADD,
     OP_SUBTRACT,
     OP_MULTIPLY,
     OP_DIVIDE,
+    //
+    OP_TRUE,
+    OP_FALSE,
+    OP_NIL,
+    OP_EQUAL,
+    OP_GREATER,
+    OP_LESS,
     //
     OP_RETURN,
 } OpCode;

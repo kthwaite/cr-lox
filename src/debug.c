@@ -3,8 +3,7 @@
 #include <stdio.h>
 
 #define HANDLE_SIMPLE_INSTRUCTION(op, offset)                                  \
-    case op:                                                                   \
-        return simpleInstruction(#op, offset)
+    case op: return simpleInstruction(#op, offset)
 
 void disassembleChunk(Chunk* chunk, const char* name) {
     printf("== %s ==\n", name);
@@ -41,6 +40,12 @@ int disassembleInstruction(Chunk* chunk, int offset) {
         HANDLE_SIMPLE_INSTRUCTION(OP_SUBTRACT, offset);
         HANDLE_SIMPLE_INSTRUCTION(OP_MULTIPLY, offset);
         HANDLE_SIMPLE_INSTRUCTION(OP_DIVIDE, offset);
+        HANDLE_SIMPLE_INSTRUCTION(OP_TRUE, offset);
+        HANDLE_SIMPLE_INSTRUCTION(OP_FALSE, offset);
+        HANDLE_SIMPLE_INSTRUCTION(OP_NIL, offset);
+        HANDLE_SIMPLE_INSTRUCTION(OP_EQUAL, offset);
+        HANDLE_SIMPLE_INSTRUCTION(OP_GREATER, offset);
+        HANDLE_SIMPLE_INSTRUCTION(OP_LESS, offset);
         case OP_CONSTANT:
             return constantInstruction("OP_CONSTANT", chunk, offset);
         default:
