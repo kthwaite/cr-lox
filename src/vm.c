@@ -13,7 +13,10 @@ VM vm;
 
 static void resetStack() { vm.stackTop = vm.stack; }
 
-void initVM() { resetStack(); }
+void initVM() {
+    resetStack();
+    vm.objects = NULL;
+}
 void push(Value value) {
     *vm.stackTop = value;
     vm.stackTop++;
@@ -159,6 +162,4 @@ InterpretResult interpret(const char* source) {
     return INTERPRET_OK;
 }
 
-void freeVM() {
-    //
-}
+void freeVM() { freeObjects(); }
