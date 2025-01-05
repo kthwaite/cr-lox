@@ -16,6 +16,7 @@ static void resetStack() { vm.stackTop = vm.stack; }
 void initVM() {
     resetStack();
     vm.objects = NULL;
+    initTable(&vm.strings);
 }
 void push(Value value) {
     *vm.stackTop = value;
@@ -162,4 +163,7 @@ InterpretResult interpret(const char* source) {
     return INTERPRET_OK;
 }
 
-void freeVM() { freeObjects(); }
+void freeVM() {
+    freeTable(&vm.strings);
+    freeObjects();
+}
