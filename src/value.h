@@ -3,10 +3,14 @@
 
 #include "common.h"
 
+typedef struct Obj Obj;
+typedef struct ObjString ObjString;
+
 typedef enum {
     VAL_BOOL,
     VAL_NIL,
     VAL_NUMBER,
+    VAL_OBJ,
 } ValueType;
 
 typedef struct {
@@ -14,6 +18,7 @@ typedef struct {
     union {
         bool boolean;
         double number;
+        Obj* obj;
     } as;
 } Value;
 
@@ -27,6 +32,10 @@ typedef struct {
 #define NUMBER_VAL(value) ((Value){VAL_NUMBER, {.number = value}})
 #define IS_NUMBER(value) ((value).type == VAL_NUMBER)
 #define AS_NUMBER(value) ((value).as.number)
+
+#define OBJ_VAL(value) ((Value){VAL_OBJ, {.obj = (Obj*)value}})
+#define IS_OBJ(value) ((value).type == VAL_OBJ)
+#define AS_OBJ(value) ((value).as.obj)
 
 typedef struct {
     int capacity;
